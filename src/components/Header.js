@@ -31,7 +31,7 @@ const Header = withRouter(({location}) => {
   return (
     <div className={setClass()} style={location.pathname === '/' ? {position: 'fixed', zIndex: '999'} : {position: 'static'}}>
       <Link to="/">
-        <img src={Logo} alt="logo" style={{width: '150px'}}/>
+        <img src={Logo} alt="logo"/>
       </Link>
       <div className="menu">
         <p><Link to="/">HOME</Link></p>

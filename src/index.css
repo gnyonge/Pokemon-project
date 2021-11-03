@@ -219,6 +219,7 @@ p {
     font-weight: 500;
     display: flex;
     align-items: center;
+    color: #c3a1a0;
 }
 
 .item-container {
@@ -239,12 +240,13 @@ p {
 
 .item-container img {
     width: 150px;
-    padding-left: 30px;
+    padding-left: 25px;
 }
 
 .name-container {
     display: flex;
     justify-content: space-between;
+    padding-left: 15px;
 }
 
 .bag {
@@ -281,10 +283,11 @@ p {
     border: none;
     border-radius: 10px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    padding: 10px 20px;
+    padding: 10px 10px;
     color: #ffffff;
     text-decoration: none;
     transition: 0.3s ease;
+    width: 50px;
 }
 
 .delete:hover {
@@ -314,6 +317,10 @@ p {
     left: 0;
     right: 0;
     transition: .3s ease;
+}
+
+.header img {
+    width: 150px;
 }
 
 .fixed-header {
@@ -454,5 +461,11 @@ li {
     }
     .button-container {
         width: 55%;
+    }
+    .header img {
+        width: 100px;
+    }
+    .bag-container h1 {
+        font-size: 18px;
     }
 }
