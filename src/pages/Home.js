@@ -5,7 +5,7 @@ import axios from 'axios';
 import PokemonThumbnail from '../components/PokemonThumbnail';
 import { fetchPokemon, getKoreanData } from '../App';
 import { setPokemons, setKoreanData } from '../modules/pokemonReducer';
-
+import PokeImage from '../images/pica.jpg';
 
 const Home = () => {
 
@@ -13,19 +13,21 @@ const Home = () => {
   const [koData, setKoData] = useState([]);
   const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20');
   const [loading, setLoading] = useState(true);
+  const [moreLoading, setMoreLoading] = useState(false);
 
   const dispatch = useDispatch();
   const pokemons = useSelector(state => state.pokemonReducer.pokemonArray)
 
   const getAllPokemons = async () => {
-    
+    setMoreLoading(true);
     const createPokemonObject = async (results) => {
       const nextList = await Promise.all(results.map(pokemon => fetchPokemon(pokemon.name)));
       setAllPokemons(currentList => [...currentList, ...nextList]);
-      const sumList = [...allPokemons, ...nextList]
+      const sumList = [...allPokemons, ...nextList];
       const koList = await Promise.all(sumList.map(pokemon => getKoreanData(pokemon.name)));
-      setKoData(koList)
+      setKoData(koList);
       setLoading(false);
+      setMoreLoading(false);
     }
     
     const pokemonData = await axios.get(loadMore) 
@@ -53,7 +55,7 @@ const Home = () => {
       <>
         <div className="pokemon-container">
           <div>
-            <img className="header-image" src='/pica.jpg' alt="헤더이미지" />
+            <img className="header-image" src={PokeImage} alt="헤더이미지" />
           </div>
           <div className="all-container">
             { pokemons.map((pokemon, index) => (
@@ -66,7 +68,7 @@ const Home = () => {
               />
               ))}
           </div>
-          <button className="load-more" onClick={() => getAllPokemons()}>더보기</button>
+          <button className="load-more" onClick={() => getAllPokemons()}>{moreLoading ? '로딩중...' : '더보기!'}</button>
         </div>
       </>
     )}

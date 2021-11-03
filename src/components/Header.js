@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
+import Logo from '../images/pokemon_logo.png';
 
 const Header = withRouter(({location}) => {
-  console.log(location,'엥')
   const [header, setHeader] = useState(false);
   const changeHeader = () => {
     if (window.scrollY >= 100) {
@@ -31,7 +31,7 @@ const Header = withRouter(({location}) => {
   return (
     <div className={setClass()} style={location.pathname === '/' ? {position: 'fixed', zIndex: '999'} : {position: 'static'}}>
       <Link to="/">
-        <img src="/pokemon_logo.png" alt="logo" style={{width: '150px'}}/>
+        <img src={Logo} alt="logo" style={{width: '150px'}}/>
       </Link>
       <div className="menu">
         <p><Link to="/">HOME</Link></p>

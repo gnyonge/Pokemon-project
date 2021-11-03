@@ -25,7 +25,6 @@ export default function pokemonReducer(state = initialState, action) {
                 koreanArray: action.koreanData
             };
         case LIKE_POKEMON:
-            console.log(state.likeArray)
             if (state.likeArray.find(data => data.name === action.pokemonName) !== undefined) {
                 return {
                     ...state,

@@ -167,7 +167,7 @@ h3 {
 }
 
 .load-more {
-    width: 10%;
+    width: 100px;
     background: #b3b9b3;
     padding: 10px;
     display: inline-block;
@@ -256,6 +256,22 @@ p {
     padding-left: 0;
     box-shadow: 5px 5px 15px rgba(186, 126, 126, 0.5);
     border-radius: 50px;
+}
+
+.bag-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 50px;
+    padding: 20px;
+    box-shadow: 5px 5px 15px rgba(186, 126, 126, 0.5);
+    border-radius: 50px;
+    text-align: center;
+}
+
+.bag-container h1 {
+    margin: 0;
 }
 
 .delete {
