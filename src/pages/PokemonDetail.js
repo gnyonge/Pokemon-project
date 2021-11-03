@@ -31,7 +31,9 @@ const PokemonDetail = ({ match }) => {
   return (
     <div className="card-container">
       {loading ? (
-        <h1>로딩중...</h1>
+        <div className="loading">
+          <h1>로딩중...</h1>
+        </div>
       ) : (
         <div className="detail-container">
           <div className="image-container">
