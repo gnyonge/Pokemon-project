@@ -8,7 +8,7 @@ import PokemonBag from './pages/PokemonBag';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Header />
       <Route exact path="/" component={Home} />
       <Route path="/pokemon/:name" component={PokemonDetail} />
