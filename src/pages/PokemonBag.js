@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import PokemonItem from '../components/PokemonItem';
 
 const PokemonBag = () => {
+
   const likeList = useSelector(state => state.pokemonReducer.likeArray)
 
   return (
@@ -23,7 +24,6 @@ const PokemonBag = () => {
            ))}
         </div>
         )}
-        
       </div>
   )
 }

@@ -133,8 +133,9 @@ h3 {
 
 .thumb-container .number {
     border-radius: 1rem;
-    padding: 0.2rem 0.4rem;
+    padding: 0.1rem 0.4rem 0.3rem 0.4rem;
     background-color: rgba(255, 255, 255, 0.3);
+    margin-bottom: 1rem;
 }
 
 .thumb-container img {
@@ -164,7 +165,7 @@ h3 {
 
 .load-more:hover {
     background: #948f8f;
-    transition: all 0.4s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 .load-more {
@@ -175,7 +176,7 @@ h3 {
     outline: 0;
     border: 0;
     margin: -1px;
-    border-radius: 2px;
+    border-radius: 10px;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: #f5f5f5;
@@ -249,18 +250,7 @@ p {
     padding-left: 15px;
 }
 
-.bag {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 50px;
-    padding: 20px;
-    padding-left: 0;
-    box-shadow: 5px 5px 15px rgba(186, 126, 126, 0.5);
-    border-radius: 50px;
-}
-
+.bag,
 .bag-container {
     display: flex;
     justify-content: center;
@@ -270,6 +260,13 @@ p {
     padding: 20px;
     box-shadow: 5px 5px 15px rgba(186, 126, 126, 0.5);
     border-radius: 50px;
+}
+
+.bag {
+    padding-left: 0;
+}
+
+.bag-container {
     text-align: center;
 }
 

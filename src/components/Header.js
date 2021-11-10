@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import Logo from '../images/pokemon_logo.png';
 
 const Header = withRouter(({location}) => {
-  const [header, setHeader] = useState(false);
-  const changeHeader = () => {
+  
+  const [header, setHeader] = useState(false); // 스크롤 내렸는지 확인하는 변수
+  const changeHeader = () => { // 스크롤 여부에 때라 변수 set하는 함수
     if (window.scrollY >= 100) {
       setHeader(true)
     } else {
@@ -15,8 +16,7 @@ const Header = withRouter(({location}) => {
 
   window.addEventListener('scroll', changeHeader)
 
-
-  const setClass = () => {
+  const setClass = () => { // 헤더 className 리턴하는 함수
     if (location.pathname === '/') {
       if (header) {
         return 'header fixed-header'

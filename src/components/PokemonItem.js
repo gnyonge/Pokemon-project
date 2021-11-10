@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { likePokemon } from '../modules/pokemonReducer';
 
 const PokemonItem = ({ name, koreanName, image }) => {
+  
   const dispatch = useDispatch();
 
   return (

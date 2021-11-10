@@ -4,22 +4,20 @@ import { likePokemon } from '../modules/pokemonReducer';
 
 const PokemonDetail = ({ match }) => {
   
-  const name = match.params.name;
+  const name = match.params.name; // 포켓몬 이름 (영어)
   const dispatch = useDispatch();
   
-  const pokemonArray = useSelector(state => state.pokemonReducer.pokemonArray)
-  const pokemon = pokemonArray.find(pokemon => pokemon.name === name)
-  const koreanArray = useSelector(state => state.pokemonReducer.koreanArray)
-  const pokemonInKorean = koreanArray.find(pokemon => pokemon.name === name)
-  const likeArray = useSelector(state => state.pokemonReducer.likeArray)
-
+  const pokemonArray = useSelector(state => state.pokemonReducer.pokemonArray) // 포켓몬 객체 배열
+  const pokemon = pokemonArray.find(pokemon => pokemon.name === name) // 이름 같은 객체 추출
+  const koreanArray = useSelector(state => state.pokemonReducer.koreanArray) // 한국어 설명 배열
+  const pokemonInKorean = koreanArray.find(pokemon => pokemon.name === name) // 이름 같은 객체 추출
+  const likeArray = useSelector(state => state.pokemonReducer.likeArray) // 포켓몬 잡았는지 여부를 위함
 
   const pokemonDetails = pokemon
   const dataInKorean = pokemonInKorean
   const [loading, setLoading] = useState(true);
 
-
-  const like = (name) => {
+  const like = (name) => { // 포켓몬 잡기, 버리기 함수
     dispatch(likePokemon(name));
   }
 

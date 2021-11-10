@@ -9,37 +9,41 @@ import PokeImage from '../images/pica.jpg';
 
 const Home = () => {
 
-  const [allPokemons, setAllPokemons] = useState([]);
-  const [koData, setKoData] = useState([]);
-  const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20');
-  const [loading, setLoading] = useState(true);
-  const [moreLoading, setMoreLoading] = useState(false);
+  const [allPokemons, setAllPokemons] = useState([]); // store에 저장 될 포켓몬 배열
+  const [koData, setKoData] = useState([]); // store에 저장될 한국어 설명 배열
+  const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20'); // 다음 20개 포켓몬 가져오는 api 주소
+  const [loading, setLoading] = useState(true); // 처음 렌더링 될 때 로딩중 변수
+  const [moreLoading, setMoreLoading] = useState(false); // 더보기 눌렀을 때 로딩중 변수
 
   const dispatch = useDispatch();
-  const pokemons = useSelector(state => state.pokemonReducer.pokemonArray)
+  const pokemons = useSelector(state => state.pokemonReducer.pokemonArray) // allPokemons를 저장한 포켓몬 배열
 
   const getAllPokemons = async () => {
-    setMoreLoading(true);
+    setMoreLoading(true); // 더보기 버튼 -> 로딩중...으로 바뀜
     const createPokemonObject = async (results) => {
+      // 포켓몬 이름으로 해당 포켓몬의 객체들을 불러와서 배열에 저장
       const nextList = await Promise.all(results.map(pokemon => fetchPokemon(pokemon.name)));
       setAllPokemons(currentList => [...currentList, ...nextList]);
+
       const sumList = [...allPokemons, ...nextList];
+      // 누적시킨 배열을 돌면서 한국어 설명 객체들을 불러와서 배열에 저장
       const koList = await Promise.all(sumList.map(pokemon => getKoreanData(pokemon.name)));
-      setKoData(koList);
-      setLoading(false);
-      setMoreLoading(false);
+      setKoData(koList); 
+      
+      setLoading(false); // 처음 렌더링 할 때의 로딩중 없어지고 포켓몬 썸네일 보여짐
+      setMoreLoading(false); // 로딩중... -> 더보기로 바뀜
     }
     
-    const pokemonData = await axios.get(loadMore) 
-    setLoadMore(pokemonData.data.next);
-    createPokemonObject(pokemonData.data.results);
+    const pokemonData = await axios.get(loadMore) // 처음 20개 포켓몬 이름만 들어있는 배열 불러옴
+    setLoadMore(pokemonData.data.next); // 다음 20개 포켓몬 가져올 api 주소
+    createPokemonObject(pokemonData.data.results); // 이름만 들어있는 배열로 함수 실행
   }
 
   useEffect(() => {
     getAllPokemons(); 
   }, []);
 
-  useEffect(() => {
+  useEffect(() => { // koData가 변할 때마다 store에 배열 저장
     dispatch(setPokemons(allPokemons)); 
     dispatch(setKoreanData(koData))
   }, [koData]); 
